@@ -31,6 +31,10 @@
 
       .row
         .span9
+
+          #polls
+
+
           = bootstrap_flash
           = yield
         .span3
@@ -46,3 +50,9 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+
+    :javascript
+      $(function() {
+        new BackboneHackaton.Routers.PollsRouter({ polls: #{@polls.to_json} });
+        Backbone.history.start();
+      });
